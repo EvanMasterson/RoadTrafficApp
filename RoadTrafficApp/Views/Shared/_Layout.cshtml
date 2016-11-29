@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Road Traffic Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Tolls", "Index", "Tolls")</li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Road Traffic Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript">
+
+   $(document).ready(function () {
+     initMap();
+   });
+   function initMap() {
+       var map = new google.maps.Map(document.getElementById('map'), {
+           zoom: 15,
+           center: { lat: 53.3239918, lng: -6.5258807 }
+       });
+
+       google.maps.event.addDomListener(window, "resize", function () {
+           var center = map.getCenter();
+           google.maps.event.trigger(map, "resize");
+           map.setCenter(center);
+       });
+
+       var trafficLayer = new google.maps.TrafficLayer();
+       trafficLayer.setMap(map);
+
+       var infoWindow = new google.maps.InfoWindow({ map: map });
+
+       if (navigator.geolocation) {
+           navigator.geolocation.getCurrentPosition(function (position) {
+               var pos = {
+                   lat: position.coords.latitude,
+                   lng: position.coords.longitude
+               };
+
+               infoWindow.setPosition(pos);
+               infoWindow.setContent('Current Location Traffic Data');
+               map.setCenter(pos);
+           }, function () {
+               handleLocationError(true, infoWindow, map.getCenter());
+           });
+       } else {
+           // Browser doesn't support Geolocation
+           handleLocationError(false, infoWindow, map.getCenter());
+       }
+   }
+
+   function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+       infoWindow.setPosition(pos);
+       infoWindow.setContent(browserHasGeolocation ?
+                             'Error: The Geolocation service failed.' :
+                             'Error: Your browser doesn\'t support geolocation.');
+   }
+</script>
+@*<script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVEzL0RBokDP7WSslsaInYcUPv_VfS_3k&callback=initMap">
+    </script>*@
