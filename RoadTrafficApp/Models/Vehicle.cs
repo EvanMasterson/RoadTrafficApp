@@ -12,7 +12,7 @@ namespace RoadTrafficApp.Models
         public int VehicleID { get; set; }
         public int TollID { get; set; }
         public string VehicleType { get; set; }
-        public double Price { get; set; }
+        public string Price { get; set; }
 
         public virtual Toll Toll { get; set; }
     }
