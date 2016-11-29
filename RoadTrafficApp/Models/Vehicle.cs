@@ -10,7 +10,7 @@ namespace RoadTrafficApp.Models
     public class Vehicle
     {
         [Key]
-        public int Toll_ID { get; set; }
+        public int TollID { get; set; }
         public string VehicleType { get; set; }
         public double Price { get; set; }
 
