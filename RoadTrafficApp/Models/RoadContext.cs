@@ -17,6 +17,8 @@ namespace RoadTrafficApp.Models
 
         public DbSet<Toll> Tolls { get; set; }
         public DbSet<Vehicle> Vechicles { get; set; }
+        public DbSet<PetrolStation> PetrolStations { get; set; }
+        public DbSet<Garage> Garages { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

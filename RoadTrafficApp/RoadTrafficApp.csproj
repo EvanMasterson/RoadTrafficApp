@@ -197,8 +197,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\GaragesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PetrolStationsController.cs" />
     <Compile Include="Controllers\TollsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -213,10 +215,12 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Garage.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\RoadContext.cs" />
     <Compile Include="Models\RoadInitializer.cs" />
+    <Compile Include="Models\PetrolStation.cs" />
     <Compile Include="Models\Toll.cs" />
     <Compile Include="Models\Vehicle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -286,6 +290,16 @@
     <Content Include="Views\Tolls\Details.cshtml" />
     <Content Include="Views\Tolls\Edit.cshtml" />
     <Content Include="Views\Tolls\Index.cshtml" />
+    <Content Include="Views\PetrolStations\Create.cshtml" />
+    <Content Include="Views\PetrolStations\Delete.cshtml" />
+    <Content Include="Views\PetrolStations\Details.cshtml" />
+    <Content Include="Views\PetrolStations\Edit.cshtml" />
+    <Content Include="Views\PetrolStations\Index.cshtml" />
+    <Content Include="Views\Garages\Create.cshtml" />
+    <Content Include="Views\Garages\Delete.cshtml" />
+    <Content Include="Views\Garages\Details.cshtml" />
+    <Content Include="Views\Garages\Edit.cshtml" />
+    <Content Include="Views\Garages\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

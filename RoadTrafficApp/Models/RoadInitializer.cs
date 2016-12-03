@@ -27,7 +27,6 @@ namespace RoadTrafficApp.Models
                 new Toll { Name="Limerick Tunnel", Location="Between Junction 2 and Junction 4"}
             };
             tolls.ForEach(t => context.Tolls.Add(t));
-            //context.SaveChanges();
 
             var vehicles = new List<Vehicle>
             {
@@ -104,8 +103,19 @@ namespace RoadTrafficApp.Models
                 new Vehicle { TollID=12, VehicleType="Goods Vehicles with a design gross vehicle weight exceeding 3,500 kilograms and having 4 or more axles", Price="€6.10" }
             };
             vehicles.ForEach(t => context.Vechicles.Add(t));
-            context.SaveChanges();
 
+            var petrolstations = new List<PetrolStation>
+            {
+                new PetrolStation { Name="Maxol", Location="Harold's Cross", Petrol="127.7c", Diesel="117.7c" }
+            };
+            petrolstations.ForEach(t => context.PetrolStations.Add(t));
+
+            var garages = new List<Garage>
+            {
+                new Garage { Name="Kenilworth Motors", Location="348 Harold's Cross Rd, Harold's Cross, Dublin 6W" }
+            };
+            garages.ForEach(t => context.Garages.Add(t));
+            context.SaveChanges();
 
         }
     }
