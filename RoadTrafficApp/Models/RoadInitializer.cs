@@ -106,13 +106,31 @@ namespace RoadTrafficApp.Models
 
             var petrolstations = new List<PetrolStation>
             {
-                new PetrolStation { Name="Maxol", Location="Harold's Cross", Petrol="127.7c", Diesel="117.7c" }
+                new PetrolStation { Name="Maxol", Location="Harold's Cross, Dublin 6W", Petrol="127.7c", Diesel="118.7c" },
+                new PetrolStation { Name="Applegreen", Location="Grange Road, Baldoyle, Dublin 13", Petrol="129.8c", Diesel="119.8c" },
+                new PetrolStation { Name="Esso", Location="Kimmage Road Lower, Dublin 12", Petrol="129.9c", Diesel="120.9c" },
+                new PetrolStation { Name="Tesco", Location="Dundrum Town Centre, Dublin 14", Petrol="127.7c", Diesel="117.7c" },
+                new PetrolStation { Name="Texaco", Location="Rathfarnham Road, Dublin 14", Petrol="129.7c", Diesel="120.7c" },
+                new PetrolStation { Name="Topaz", Location="Nutgrove Shopping Centre, Rathfarnham, Dublin 14", Petrol="131.9c", Diesel="122.9c" },
+                new PetrolStation { Name="Maxol", Location="Tymon Road, Tallaght, Dublin 24", Petrol="130.9c", Diesel="121.9c" },
+                new PetrolStation { Name="Topaz", Location="Butterfield Avenue, Rathfarnham, Dublin 14", Petrol="133.9c", Diesel="123.9c" },
+                new PetrolStation { Name="Topaz", Location="Ushers Quay, Dublin 8", Petrol="127.9c", Diesel="117.9c" },
+                new PetrolStation { Name="Applegreen", Location="Ballyfermot Road, Dublin 10", Petrol="130.8c", Diesel="120.8c" }
             };
             petrolstations.ForEach(t => context.PetrolStations.Add(t));
 
             var garages = new List<Garage>
             {
-                new Garage { Name="Kenilworth Motors", Location="348 Harold's Cross Rd, Harold's Cross, Dublin 6W" }
+                new Garage { Name="Fitzwilliam Garage", Location="8 Hagans Court, Off Lower Baggot Street, Dublin 2" },
+                new Garage { Name="Bedford Motors", Location="60A Beaumont Ave, Churchtown Upper, Dublin 14" },
+                new Garage { Name="Mulligan's Garage", Location="17 Synge Lane Dublin 8" },
+                new Garage { Name="Kelly's Garage", Location="13a Mountpleasant Ave Lower, Dublin Southside, Rathmines, Co. Dublin" },
+                new Garage { Name="Sweeneys Garage Tallaght", Location="6 Old Belgard Road, Tallaght, Co. Dublin" },
+                new Garage { Name="Hillside Garage Servicing and Repairs", Location="A3, South City Business Park, Oldbawn, Dublin 24" },
+                new Garage { Name="O'Brien Garage", Location="39 Herbert Ln, Grand Canal Dock, Dublin" },
+                new Garage { Name="Dorset Expert Garage", Location="59 Dorset Street Lower, Inns Quay, Dublin" },
+                new Garage { Name="Sean Kavanagh's Garage", Location="Fonthill Rd, Ronanstown, Clondalkin, Co. Dublin" },
+                new Garage { Name="Stuarts Garage - Land Rover", Location="24, Greenhills Rd, Dublin 24" }
             };
             garages.ForEach(t => context.Garages.Add(t));
             context.SaveChanges();
