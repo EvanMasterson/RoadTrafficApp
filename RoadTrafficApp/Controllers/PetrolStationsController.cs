@@ -123,5 +123,11 @@ namespace RoadTrafficApp.Controllers
             }
             base.Dispose(disposing);
         }
+
+        //GET: PetrolStations/Search
+        public ActionResult Search()
+        {
+            return View();
+        }
     }
 }

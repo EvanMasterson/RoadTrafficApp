@@ -319,6 +319,7 @@
     <Content Include="Views\Garages\Details.cshtml" />
     <Content Include="Views\Garages\Edit.cshtml" />
     <Content Include="Views\Garages\Index.cshtml" />
+    <Content Include="Views\PetrolStations\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
