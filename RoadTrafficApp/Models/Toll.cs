@@ -9,10 +9,21 @@ namespace RoadTrafficApp.Models
 {
     public class Toll
     {
+        private ICollection<Vehicle> _vehicles;
+
+        public Toll()
+        {
+            _vehicles = new List<Vehicle>();
+        }
+
         public int ID { get; set; }
         public string Name { get; set; }
         public string Location { get; set; }
 
-        public virtual ICollection<Vehicle> Vehicle { get; set; }
+        public virtual ICollection<Vehicle> Vehicle
+        {
+            get { return _vehicles; }
+            set { _vehicles = value; }
+        }
     }
 }

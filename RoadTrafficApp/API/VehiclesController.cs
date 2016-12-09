@@ -18,20 +18,48 @@ namespace RoadTrafficApp.API
         private RoadContext db = new RoadContext();
 
         // GET: api/Vehicles
-        public IQueryable<Vehicle> GetVechicles()
+        public IQueryable<VehicleDTO> GetVechicles()
         {
-            return db.Vechicles;
-        }
+            var vehicles = from v in db.Vechicles
+                           select new VehicleDTO()
+                           {
+                               VehicleID = v.VehicleID,
+                               TollID = v.TollID,
+                               VehicleType = v.VehicleType,
+                               Price = v.Price,
+                               Toll = v.Toll.Select(t => new TollDTO()
+                               {
+                                   ID = t.ID,
+                                   Name = t.Name,
+                                   Location = t.Location
+                               }).ToList()
+                           };
+            return vehicles;
+        } 
 
         // GET: api/Vehicles/5
-        [ResponseType(typeof(Vehicle))]
+        [ResponseType(typeof(VehicleDTO))]
         public async Task<IHttpActionResult> GetVehicle(int id)
         {
-            Vehicle vehicle = await db.Vechicles.FindAsync(id);
-            if (vehicle == null)
+            Vehicle v = await db.Vechicles.FindAsync(id);
+            if (v == null)
             {
                 return NotFound();
             }
+
+            VehicleDTO vehicle = new VehicleDTO
+            {
+                VehicleID = v.VehicleID,
+                TollID = v.TollID,
+                VehicleType = v.VehicleType,
+                Price = v.Price,
+                Toll = v.Toll.Select(t => new TollDTO()
+                {
+                    ID = t.ID,
+                    Name = t.Name,
+                    Location = t.Location
+                }).ToList()
+            };
 
             return Ok(vehicle);
         }

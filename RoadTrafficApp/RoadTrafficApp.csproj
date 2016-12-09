@@ -239,7 +239,9 @@
     <Compile Include="Models\RoadInitializer.cs" />
     <Compile Include="Models\PetrolStation.cs" />
     <Compile Include="Models\Toll.cs" />
+    <Compile Include="Models\TollDTO.cs" />
     <Compile Include="Models\Vehicle.cs" />
+    <Compile Include="Models\VehicleDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
