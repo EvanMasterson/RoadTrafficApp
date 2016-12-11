@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -10,108 +11,108 @@ using RoadTrafficApp.Models;
 
 namespace RoadTrafficApp.Controllers
 {
-    public class PetrolStationsController : Controller
+    public class VehiclesController : Controller
     {
         private RoadContext db = new RoadContext();
 
-        // GET: PetrolStations
-        public ActionResult Index()
+        // GET: Vehicles
+        public async Task<ActionResult> Index()
         {
-            return View(db.PetrolStations.ToList());
+            return View(await db.Vechicles.ToListAsync());
         }
 
-        // GET: PetrolStations/Details/5
-        public ActionResult Details(int? id)
+        // GET: Vehicles/Details/5
+        public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PetrolStation petrolStation = db.PetrolStations.Find(id);
-            if (petrolStation == null)
+            Vehicle vehicle = await db.Vechicles.FindAsync(id);
+            if (vehicle == null)
             {
                 return HttpNotFound();
             }
-            return View(petrolStation);
+            return View(vehicle);
         }
 
-        // GET: PetrolStations/Create
+        // GET: Vehicles/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: PetrolStations/Create
+        // POST: Vehicles/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name,Location,Petrol,Diesel")] PetrolStation petrolStation)
+        public async Task<ActionResult> Create([Bind(Include = "VehicleID,TollID,VehicleType,Price")] Vehicle vehicle)
         {
             if (ModelState.IsValid)
             {
-                db.PetrolStations.Add(petrolStation);
-                db.SaveChanges();
+                db.Vechicles.Add(vehicle);
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(petrolStation);
+            return View(vehicle);
         }
 
-        // GET: PetrolStations/Edit/5
-        public ActionResult Edit(int? id)
+        // GET: Vehicles/Edit/5
+        public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PetrolStation petrolStation = db.PetrolStations.Find(id);
-            if (petrolStation == null)
+            Vehicle vehicle = await db.Vechicles.FindAsync(id);
+            if (vehicle == null)
             {
                 return HttpNotFound();
             }
-            return View(petrolStation);
+            return View(vehicle);
         }
 
-        // POST: PetrolStations/Edit/5
+        // POST: Vehicles/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name,Location,Petrol,Diesel")] PetrolStation petrolStation)
+        public async Task<ActionResult> Edit([Bind(Include = "VehicleID,TollID,VehicleType,Price")] Vehicle vehicle)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(petrolStation).State = EntityState.Modified;
-                db.SaveChanges();
+                db.Entry(vehicle).State = EntityState.Modified;
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(petrolStation);
+            return View(vehicle);
         }
 
-        // GET: PetrolStations/Delete/5
-        public ActionResult Delete(int? id)
+        // GET: Vehicles/Delete/5
+        public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PetrolStation petrolStation = db.PetrolStations.Find(id);
-            if (petrolStation == null)
+            Vehicle vehicle = await db.Vechicles.FindAsync(id);
+            if (vehicle == null)
             {
                 return HttpNotFound();
             }
-            return View(petrolStation);
+            return View(vehicle);
         }
 
-        // POST: PetrolStations/Delete/5
+        // POST: Vehicles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            PetrolStation petrolStation = db.PetrolStations.Find(id);
-            db.PetrolStations.Remove(petrolStation);
-            db.SaveChanges();
+            Vehicle vehicle = await db.Vechicles.FindAsync(id);
+            db.Vechicles.Remove(vehicle);
+            await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 

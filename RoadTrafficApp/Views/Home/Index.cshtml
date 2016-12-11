@@ -9,24 +9,128 @@
 <div id="map" style="height: 580px;">
 </div>
 
+
 <div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    <div class="col-md-12, search">
+        <h2>Search for Toll Road by ID</h2>
+        <input type="text" id="TollRoadID" size="5" />
+        <input type="submit" name="SearchButton" id="SearchButton1" value="Search" />
+        <br />
+        <div id="divProcessing1">
+            <p>Processing, please wait . . .<img src="../../Content/ajax-loader.gif" height="50"></p>
+        </div>
+        <br />
+        <div id="divResult1"></div>
     </div>
 </div>
+
+<div class="row">
+    <div class="col-md-12, search">
+        <h2>Search for Petrol Station by ID</h2>
+        <input type="text" id="StationID" size="5" />
+        <input type="submit" name="SearchButton" id="SearchButton2" value="Search" />
+        <br />
+        <div id="divProcessing2">
+            <p>Processing, please wait . . .<img src="../../Content/ajax-loader.gif" height="50"></p>
+        </div>
+        <br />
+        <div id="divResult2"></div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12, search">
+        <h2>Search for Garage by ID</h2>
+        <input type="text" id="GarageID" size="5" />
+        <input type="submit" name="SearchButton" id="SearchButton3" value="Search" />
+        <br />
+        <div id="divProcessing3">
+            <p>Processing, please wait . . .<img src="../../Content/ajax-loader.gif" height="50"></p>
+        </div>
+        <br />
+        <div id="divResult3"></div>
+    </div>
+</div>
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+
+        $(document).ready(function(){
+            $("#divProcessing1").hide();
+            $("#SearchButton1").click(function(){
+                search1();
+            });
+        });
+
+        function search1(){
+            $("#divResult1").empty();
+            $("#divProcessing1").show();
+            var tollID = $("#TollRoadID").val();
+            var url = "../api/Tolls/" + tollID;
+            $.ajax({
+                url: url,
+                type: "GET",
+                dataType: "json",
+                success: function(resp){
+                    $("#divProcessing1").hide();
+                    $("<h3>Results</h3>").appendTo("#divResult1");
+                    $("#divResult1").append("<p>Name: " + resp.Name + "<br/>Location: " + resp.Location + "<br/></p>");
+                }
+            })
+        }
+
+        $(document).ready(function () {
+            $("#divProcessing2").hide();
+            $("#SearchButton2").click(function () {
+                search2();
+            });
+        });
+
+        function search2() {
+            $("#divResult2").empty();
+            $("#divProcessing2").show();
+            var stationID = $("#StationID").val();
+            var url = "../api/PetrolStations/" + stationID;
+            $.ajax({
+                url: url,
+                type: "GET",
+                dataType: "json",
+                success: function (resp) {
+                    $("#divProcessing2").hide();
+                    $("<h3>Results</h3>").appendTo("#divResult2");
+                    $("#divResult2").append("<p>Name: " + resp.Name + "<br/>Location: " + resp.Location + "<br/>Petrol: " + resp.Petrol + "<br/>Diesel: " + resp.Diesel + "<br/></p>");
+                }
+            })
+        }
+
+        $(document).ready(function () {
+            $("#divProcessing3").hide();
+            $("#SearchButton3").click(function () {
+                search3();
+            });
+        });
+
+        function search3() {
+            $("#divResult3").empty();
+            $("#divProcessing3").show();
+            var garageID = $("#GarageID").val();
+            var url = "../api/Garages/" + garageID;
+            $.ajax({
+                url: url,
+                type: "GET",
+                dataType: "json",
+                success: function (resp) {
+                    $("#divProcessing3").hide();
+                    $("<h3>Results</h3>").appendTo("#divResult3");
+                    $("#divResult3").append("<p>Name: " + resp.Name + "<br/>Location: " + resp.Location + "<br/></p>");
+                }
+            })
+        }
+
+
+    </script>
+}
+
+
+

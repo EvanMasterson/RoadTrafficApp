@@ -20,7 +20,7 @@ namespace RoadTrafficApp.Models
         public string Name { get; set; }
         public string Location { get; set; }
 
-        public virtual ICollection<Vehicle> Vehicle
+        public virtual ICollection<Vehicle> Vehicles
         {
             get { return _vehicles; }
             set { _vehicles = value; }

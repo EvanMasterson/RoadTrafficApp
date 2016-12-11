@@ -21,7 +21,7 @@ namespace RoadTrafficApp.Models
         public string VehicleType { get; set; }
         public string Price { get; set; }
 
-        public virtual ICollection<Toll> Toll
+        public virtual ICollection<Toll> Tolls
         {
             get { return _tolls;}
             set { _tolls = value; }

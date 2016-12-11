@@ -27,7 +27,7 @@ namespace RoadTrafficApp.API
                                TollID = v.TollID,
                                VehicleType = v.VehicleType,
                                Price = v.Price,
-                               Toll = v.Toll.Select(t => new TollDTO()
+                               Tolls = v.Tolls.Select(t => new TollDTO()
                                {
                                    ID = t.ID,
                                    Name = t.Name,
@@ -53,7 +53,7 @@ namespace RoadTrafficApp.API
                 TollID = v.TollID,
                 VehicleType = v.VehicleType,
                 Price = v.Price,
-                Toll = v.Toll.Select(t => new TollDTO()
+                Tolls = v.Tolls.Select(t => new TollDTO()
                 {
                     ID = t.ID,
                     Name = t.Name,

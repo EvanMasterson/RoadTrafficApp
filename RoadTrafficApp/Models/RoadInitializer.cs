@@ -11,22 +11,6 @@ namespace RoadTrafficApp.Models
     {
         protected override void Seed(RoadContext context)
         {
-            var tolls = new List<Toll>
-            {
-                new Toll { Name="M50 Barrier Free Toll", Location="Between Junction 6 (M50/N3 Blanchardstown) and Junction 7 (M50/N4 Lucan)"},
-                new Toll { Name="M1 (Gormanston to Monasterboice)", Location="Between Junction 7 (Julianstown) and Junction 10 (Drogheda North)"},
-                new Toll { Name="M3 Clonee-Kells (Clonee-Dunshaughlin)", Location="Between Junction 5 (Dunboyne) and Junction 6 (Dunshaughlin)"},
-                new Toll { Name="M3 Clonee-Kells (Navan-Kells)", Location="Between Junction 9 (Navan North) and Junction 10 (Kells)"},
-                new Toll { Name="M4 (Kilcock-Enfield-Kinnegad)", Location="Between Junction 8 (Kilcock) and Junction 10 (Kinnegad east)"},
-                new Toll { Name="N6 (Galway to Ballinasloe)", Location="Between junction 15 (Ballinasloe West) and junction 16 (Loughrea)"},
-                new Toll { Name="M7/M8 (Portlaoise - Castletown/ Portlaoise - Cullahill)", Location="Between Junction 18 (Portlaoise west) and Junction 21 (Borris-In-Ossory) and Between Junction 3 (Rathdowney) on the M8 and Junction 18 (Portlaoise West) on the M7"},
-                new Toll { Name="N8 (Rathcormac - Fermoy Bypass)", Location="Between Junctions 15 (Fermoy South) and Junction 17 (Watergrasshill)"},
-                new Toll { Name="N25 (Waterford City Bypass)", Location="Between the Junction for the M9/N24 and the Junction for R710"},
-                new Toll { Name="East-Link Bridge", Location="Located in the Docklands linking the North Wall to Ringsend"},
-                new Toll { Name="Dublin Tunnel", Location="Between M1 Dublin-Belfast motorway and the M50 to Dublin Port"},
-                new Toll { Name="Limerick Tunnel", Location="Between Junction 2 and Junction 4"}
-            };
-            tolls.ForEach(t => context.Tolls.Add(t));
 
             var vehicles = new List<Vehicle>
             {
@@ -102,7 +86,25 @@ namespace RoadTrafficApp.Models
                 new Vehicle { TollID=12, VehicleType="Goods Vehicles with a design gross vehicle weight exceeding 3,500 kilograms and having 2 or 3 axles", Price="€4.80" },
                 new Vehicle { TollID=12, VehicleType="Goods Vehicles with a design gross vehicle weight exceeding 3,500 kilograms and having 4 or more axles", Price="€6.10" }
             };
-            vehicles.ForEach(t => context.Vechicles.Add(t));
+            vehicles.ForEach(v => context.Vechicles.Add(v));
+
+
+            var tolls = new List<Toll>
+            {
+                new Toll { Name="M50 Barrier Free Toll", Location="Between Junction 6 (M50/N3 Blanchardstown) and Junction 7 (M50/N4 Lucan)", Vehicles = vehicles.Where(v => (v.TollID == 1)).ToList()},
+                new Toll { Name="M1 (Gormanston to Monasterboice)", Location="Between Junction 7 (Julianstown) and Junction 10 (Drogheda North)", Vehicles = vehicles.Where(v => (v.TollID == 2)).ToList()},
+                new Toll { Name="M3 Clonee-Kells (Clonee-Dunshaughlin)", Location="Between Junction 5 (Dunboyne) and Junction 6 (Dunshaughlin)", Vehicles = vehicles.Where(v => (v.TollID == 3)).ToList()},
+                new Toll { Name="M3 Clonee-Kells (Navan-Kells)", Location="Between Junction 9 (Navan North) and Junction 10 (Kells)", Vehicles = vehicles.Where(v => (v.TollID == 4)).ToList()},
+                new Toll { Name="M4 (Kilcock-Enfield-Kinnegad)", Location="Between Junction 8 (Kilcock) and Junction 10 (Kinnegad east)", Vehicles = vehicles.Where(v => (v.TollID == 5)).ToList()},
+                new Toll { Name="N6 (Galway to Ballinasloe)", Location="Between junction 15 (Ballinasloe West) and junction 16 (Loughrea)", Vehicles = vehicles.Where(v => (v.TollID == 6)).ToList()},
+                new Toll { Name="M7/M8 (Portlaoise - Castletown/ Portlaoise - Cullahill)", Location="Between Junction 18 (Portlaoise west) and Junction 21 (Borris-In-Ossory) and Between Junction 3 (Rathdowney) on the M8 and Junction 18 (Portlaoise West) on the M7", Vehicles = vehicles.Where(v => (v.TollID == 7)).ToList()},
+                new Toll { Name="N8 (Rathcormac - Fermoy Bypass)", Location="Between Junctions 15 (Fermoy South) and Junction 17 (Watergrasshill)", Vehicles = vehicles.Where(v => (v.TollID == 8)).ToList()},
+                new Toll { Name="N25 (Waterford City Bypass)", Location="Between the Junction for the M9/N24 and the Junction for R710", Vehicles = vehicles.Where(v => (v.TollID == 9)).ToList()},
+                new Toll { Name="East-Link Bridge", Location="Located in the Docklands linking the North Wall to Ringsend", Vehicles = vehicles.Where(v => (v.TollID == 10)).ToList()},
+                new Toll { Name="Dublin Tunnel", Location="Between M1 Dublin-Belfast motorway and the M50 to Dublin Port", Vehicles = vehicles.Where(v => (v.TollID == 11)).ToList()},
+                new Toll { Name="Limerick Tunnel", Location="Between Junction 2 and Junction 4", Vehicles = vehicles.Where(v => (v.TollID == 12)).ToList()}
+            };
+            tolls.ForEach(t => context.Tolls.Add(t));
 
             var petrolstations = new List<PetrolStation>
             {
@@ -117,7 +119,7 @@ namespace RoadTrafficApp.Models
                 new PetrolStation { Name="Topaz", Location="Ushers Quay, Dublin 8", Petrol="127.9c", Diesel="117.9c" },
                 new PetrolStation { Name="Applegreen", Location="Ballyfermot Road, Dublin 10", Petrol="130.8c", Diesel="120.8c" }
             };
-            petrolstations.ForEach(t => context.PetrolStations.Add(t));
+            petrolstations.ForEach(p => context.PetrolStations.Add(p));
 
             var garages = new List<Garage>
             {
@@ -132,7 +134,7 @@ namespace RoadTrafficApp.Models
                 new Garage { Name="Sean Kavanagh's Garage", Location="Fonthill Rd, Ronanstown, Clondalkin, Co. Dublin" },
                 new Garage { Name="Stuarts Garage - Land Rover", Location="24, Greenhills Rd, Dublin 24" }
             };
-            garages.ForEach(t => context.Garages.Add(t));
+            garages.ForEach(g => context.Garages.Add(g));
             context.SaveChanges();
 
         }

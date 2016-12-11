@@ -26,7 +26,7 @@ namespace RoadTrafficApp.API
                             ID = t.ID,
                             Name = t.Name,
                             Location = t.Location,
-                            Vehicle = t.Vehicle.Select(v => new VehicleDTO()
+                            Vehicles = t.Vehicles.Select(v => new VehicleDTO()
                             {
                                 VehicleID = v.VehicleID,
                                 TollID = v.TollID,
@@ -52,7 +52,7 @@ namespace RoadTrafficApp.API
                 ID = t.ID,
                 Name = t.Name,
                 Location = t.Location,
-                Vehicle = t.Vehicle.Select(v => new VehicleDTO()
+                Vehicles = t.Vehicles.Select(v => new VehicleDTO()
                 {
                     VehicleID = v.VehicleID,
                     TollID = v.TollID,

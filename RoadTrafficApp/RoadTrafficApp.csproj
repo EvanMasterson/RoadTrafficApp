@@ -219,6 +219,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PetrolStationsController.cs" />
     <Compile Include="Controllers\TollsController.cs" />
+    <Compile Include="Controllers\VehiclesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -319,7 +320,11 @@
     <Content Include="Views\Garages\Details.cshtml" />
     <Content Include="Views\Garages\Edit.cshtml" />
     <Content Include="Views\Garages\Index.cshtml" />
-    <Content Include="Views\PetrolStations\Search.cshtml" />
+    <Content Include="Views\Vehicles\Create.cshtml" />
+    <Content Include="Views\Vehicles\Delete.cshtml" />
+    <Content Include="Views\Vehicles\Details.cshtml" />
+    <Content Include="Views\Vehicles\Edit.cshtml" />
+    <Content Include="Views\Vehicles\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

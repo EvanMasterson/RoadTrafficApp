@@ -26,7 +26,7 @@
             @Html.DisplayFor(model => model.Location)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Vehicle)
+            @Html.DisplayNameFor(model => model.Vehicles)
         </dt>
         <dd>
             <table class="table">
@@ -34,7 +34,7 @@
                     <th>Vehicle Type</th>
                     <th>Price</th>
                 </tr>
-                @foreach (var item in Model.Vehicle)
+                @foreach (var item in Model.Vehicles)
                 {
                     <tr>
                         <td>
