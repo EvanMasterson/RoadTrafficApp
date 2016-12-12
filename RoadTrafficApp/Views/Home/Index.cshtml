@@ -1,135 +1,159 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-
-<div class="col-md-12, traffic">
-    <img src="~/Content/traffic_image.jpg" alt="image" class="img-responsive, traffic" />
+<div class="row">
+    <div class="col-md-12, traffic">
+        <img src="~/Content/traffic_image.jpg" alt="image" class="img-responsive, traffic" />
+    </div>
 </div>
+
+<div class="row, markers">
+    <div class="col-md-3">
+        <img src="http://maps.google.com/intl/en_us/mapfiles/ms/micons/red-dot.png" /><text>Icon for Current Location</text>
+    </div>
+    <div class="col-md-3">
+        <img src="http://maps.google.com/intl/en_us/mapfiles/ms/micons/green-dot.png" /><text>Icon for Toll Roads</text>
+    </div>
+    <div class="col-md-3">
+        <img src="http://maps.google.com/intl/en_us/mapfiles/ms/micons/blue-dot.png" /><text>Icon for Garages</text>
+    </div>
+    <div class="col-md-3">
+        <img src="http://maps.google.com/intl/en_us/mapfiles/ms/micons/orange-dot.png" /><text>Icon for Petrol Stations</text>
+    </div>
+</div>
+
+
 <div id="map" style="height: 580px;">
 </div>
 
 
-<div class="row">
-    <div class="col-md-12, search">
-        <h2>Search for Toll Road by ID</h2>
-        <input type="text" id="TollRoadID" size="5" />
-        <input type="submit" name="SearchButton" id="SearchButton1" value="Search" />
-        <br />
-        <div id="divProcessing1">
-            <p>Processing, please wait . . .<img src="../../Content/ajax-loader.gif" height="50"></p>
+
+    <div class="row">
+        <div class="col-md-12, search">
+            <h2>Search for Toll Road information by ID</h2>
+            <input type="text" id="TollRoadID" size="5" />
+            <input type="submit" name="SearchButton" id="SearchButton1" value="Search" />
+            <br />
+            <div id="divProcessing1">
+                <p>Processing, please wait . . .<img src="../../Content/ajax-loader.gif" height="50"></p>
+            </div>
+            <br />
+            <div id="divResult1"></div>
         </div>
-        <br />
-        <div id="divResult1"></div>
     </div>
-</div>
 
-<div class="row">
-    <div class="col-md-12, search">
-        <h2>Search for Petrol Station by ID</h2>
-        <input type="text" id="StationID" size="5" />
-        <input type="submit" name="SearchButton" id="SearchButton2" value="Search" />
-        <br />
-        <div id="divProcessing2">
-            <p>Processing, please wait . . .<img src="../../Content/ajax-loader.gif" height="50"></p>
+    <div class="row">
+        <div class="col-md-12, search">
+            <h2>Search for Petrol Station information by ID</h2>
+            <input type="text" id="StationID" size="5" />
+            <input type="submit" name="SearchButton" id="SearchButton2" value="Search" />
+            <br />
+            <div id="divProcessing2">
+                <p>Processing, please wait . . .<img src="../../Content/ajax-loader.gif" height="50"></p>
+            </div>
+            <br />
+            <div id="divResult2"></div>
         </div>
-        <br />
-        <div id="divResult2"></div>
     </div>
-</div>
 
-<div class="row">
-    <div class="col-md-12, search">
-        <h2>Search for Garage by ID</h2>
-        <input type="text" id="GarageID" size="5" />
-        <input type="submit" name="SearchButton" id="SearchButton3" value="Search" />
-        <br />
-        <div id="divProcessing3">
-            <p>Processing, please wait . . .<img src="../../Content/ajax-loader.gif" height="50"></p>
+    <div class="row">
+        <div class="col-md-12, search">
+            <h2>Search for Garage by information ID</h2>
+            <input type="text" id="GarageID" size="5" />
+            <input type="submit" name="SearchButton" id="SearchButton3" value="Search" />
+            <br />
+            <div id="divProcessing3">
+                <p>Processing, please wait . . .<img src="../../Content/ajax-loader.gif" height="50"></p>
+            </div>
+            <br />
+            <div id="divResult3"></div>
         </div>
-        <br />
-        <div id="divResult3"></div>
     </div>
-</div>
 
-@section Scripts{
-    @Scripts.Render("~/bundles/jqueryval")
-    <script type="text/javascript">
+    @section Scripts{
+        @Scripts.Render("~/bundles/jqueryval")
+        <script type="text/javascript">
 
-        $(document).ready(function(){
-            $("#divProcessing1").hide();
-            $("#SearchButton1").click(function(){
-                search1();
+            $(document).ready(function () {
+                $("#divProcessing1").hide();
+                $("#SearchButton1").click(function () {
+                    search1();
+                });
             });
-        });
 
-        function search1(){
-            $("#divResult1").empty();
-            $("#divProcessing1").show();
-            var tollID = $("#TollRoadID").val();
-            var url = "../api/Tolls/" + tollID;
-            $.ajax({
-                url: url,
-                type: "GET",
-                dataType: "json",
-                success: function(resp){
-                    $("#divProcessing1").hide();
-                    $("<h3>Results</h3>").appendTo("#divResult1");
-                    $("#divResult1").append("<p><b>Name: </b>" + resp.Name + "<br/><b>Location: </b>" + resp.Location + "<br/></p>");
-                }
-            })
-        }
+            function search1() {
+                $("#divResult1").empty();
+                $("#divProcessing1").show();
+                var tollID = $("#TollRoadID").val();
+                var url = "../api/Tolls/" + tollID;
+                $.ajax({
+                    url: url,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (resp) {
+                        $("#divProcessing1").hide();
+                        $("<h3>Results</h3>").appendTo("#divResult1");
+                        $("#divResult1").append("<p><b>Name: </b>" + resp.Name + "<br/><b>Location: </b>" + resp.Location + "<br/><br/>");
+                        $("#divResult1").append("<b>Vehicle Prices:</b><br/><br/>");
+                        for (var i = 0; i < resp.Vehicles.length; i++){
+                            $("#divResult1").append(resp.Vehicles[i].VehicleType + " <br/> <b>" + resp.Vehicles[i].Price + "<br/><br/>");
+                        }
+                        $("#divResult1").append("</p>");
+                    }
+                })
+            }
 
-        $(document).ready(function () {
-            $("#divProcessing2").hide();
-            $("#SearchButton2").click(function () {
-                search2();
+            $(document).ready(function () {
+                $("#divProcessing2").hide();
+                $("#SearchButton2").click(function () {
+                    search2();
+                });
             });
-        });
 
-        function search2() {
-            $("#divResult2").empty();
-            $("#divProcessing2").show();
-            var stationID = $("#StationID").val();
-            var url = "../api/PetrolStations/" + stationID;
-            $.ajax({
-                url: url,
-                type: "GET",
-                dataType: "json",
-                success: function (resp) {
-                    $("#divProcessing2").hide();
-                    $("<h3>Results</h3>").appendTo("#divResult2");
-                    $("#divResult2").append("<p><b>Name: </b>" + resp.Name + "<br/><b>Location: </b>" + resp.Location + "<br/><b>Petrol: </b>" + resp.Petrol + "<br/><b>Diesel: </b>" + resp.Diesel + "<br/></p>");
-                }
-            })
-        }
+            function search2() {
+                $("#divResult2").empty();
+                $("#divProcessing2").show();
+                var stationID = $("#StationID").val();
+                var url = "../api/PetrolStations/" + stationID;
+                $.ajax({
+                    url: url,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (resp) {
+                        $("#divProcessing2").hide();
+                        $("<h3>Results</h3>").appendTo("#divResult2");
+                        $("#divResult2").append("<p><b>Name: </b>" + resp.Name + "<br/><b>Location: </b>" + resp.Location + "<br/><b>Petrol: </b>" + resp.Petrol + "<br/><b>Diesel: </b>" + resp.Diesel + "<br/></p>");
+                    }
+                })
+            }
 
-        $(document).ready(function () {
-            $("#divProcessing3").hide();
-            $("#SearchButton3").click(function () {
-                search3();
+            $(document).ready(function () {
+                $("#divProcessing3").hide();
+                $("#SearchButton3").click(function () {
+                    search3();
+                });
             });
-        });
 
-        function search3() {
-            $("#divResult3").empty();
-            $("#divProcessing3").show();
-            var garageID = $("#GarageID").val();
-            var url = "../api/Garages/" + garageID;
-            $.ajax({
-                url: url,
-                type: "GET",
-                dataType: "json",
-                success: function (resp) {
-                    $("#divProcessing3").hide();
-                    $("<h3>Results</h3>").appendTo("#divResult3");
-                    $("#divResult3").append("<p><b>Name: </b>" + resp.Name + "<br/><b>Location: </b>" + resp.Location + "<br/></p>");
-                }
-            })
-        }
+            function search3() {
+                $("#divResult3").empty();
+                $("#divProcessing3").show();
+                var garageID = $("#GarageID").val();
+                var url = "../api/Garages/" + garageID;
+                $.ajax({
+                    url: url,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (resp) {
+                        $("#divProcessing3").hide();
+                        $("<h3>Results</h3>").appendTo("#divResult3");
+                        $("#divResult3").append("<p><b>Name: </b>" + resp.Name + "<br/><b>Location: </b>" + resp.Location + "<br/></p>");
+                    }
+                })
+            }
 
 
-    </script>
-}
+        </script>
+    }
 
 
 
