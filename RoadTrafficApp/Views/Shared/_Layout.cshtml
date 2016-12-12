@@ -42,7 +42,6 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 <script type="text/javascript">
 
    $(document).ready(function () {
@@ -63,34 +62,172 @@
        var trafficLayer = new google.maps.TrafficLayer();
        trafficLayer.setMap(map);
 
+       var latlngToll1 = new google.maps.LatLng(53.3694422, -6.3784852);
+       var latlngToll2 = new google.maps.LatLng(53.6632839, -6.3300481);
+       var latlngToll3 = new google.maps.LatLng(53.4538131, -6.4825408);
+       var latlngToll4 = new google.maps.LatLng(53.672258, -6.775598);
+       var latlngToll5 = new google.maps.LatLng(53.4103894, -6.7399785);
+       var latlngToll6 = new google.maps.LatLng(53.2822227, -8.4133172);
+       var latlngToll7 = new google.maps.LatLng(53.0004703, -7.3933992);
+       var latlngToll8 = new google.maps.LatLng(52.027054, -8.328063);
+       var latlngToll9 = new google.maps.LatLng(52.2742808, -7.1590249);
+       var latlngToll10 = new google.maps.LatLng(53.344358, -6.2247711);
+       var latlngToll11 = new google.maps.LatLng(53.3563183, -6.2282298);
+       var latlngToll12 = new google.maps.LatLng(52.655137, -8.6863906);
 
-       //var data = [
-       //           { "Id": 1, "PlaceName": "Zaghouan", "GeoLong": "53.3239918", "GeoLat": "-6.5258807" },
-       //           { "Id": 2, "PlaceName": "Current Location ", "GeoLong": "36.4", "GeoLat": "10.616667" },
-       //           { "Id": 3, "PlaceName": "Sousse", "GeoLong": "35.8329809", "GeoLat": "10.63875" },
-       //           { "Id": 4, "PlaceName": "Sfax", "GeoLong": "34.745159", "GeoLat": "10.7613" }
-       //];
+       var markerToll1 = new google.maps.Marker({
+           'position': latlngToll1,
+           'map': map
+       });
+       var infowindow1 = new google.maps.InfoWindow({
+           content: "M50 Barrier Free Toll"
+       });
+       google.maps.event.addListener(markerToll1, 'click', function () {
+           infowindow1.open(map, markerToll1);
+       });
+       markerToll1.setIcon('http://maps.google.com/intl/en_us/mapfiles/ms/micons/green-dot.png')
 
-       //// Using the JQuery "each" selector to iterate through the JSON list and drop marker pins 
-       //$.each(data, function (i, item) {
-       //    var marker = new google.maps.Marker({
-       //        'position': new google.maps.LatLng(item.GeoLong, item.GeoLat),
-       //        'map': map,
-       //        'title': item.PlaceName
-       //    });
 
-       //    // Make the marker-pin blue! 
-       //    //marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png')
+       var markerToll2 = new google.maps.Marker({
+           'position': latlngToll2,
+           'map': map
+       });
+       var infowindow2 = new google.maps.InfoWindow({
+           content: "M1 (Gormanston to Monasterboice)"
+       });
+       google.maps.event.addListener(markerToll2, 'click', function () {
+           infowindow2.open(map, markerToll2);
+       });
+       markerToll2.setIcon('http://maps.google.com/intl/en_us/mapfiles/ms/micons/green-dot.png')
 
-       //    // put in some information about each json object - in this case, the opening hours. 
-       //    var infowindow = new google.maps.InfoWindow({
-       //        content: item.PlaceName
-       //    });
 
-       //    // finally hook up an "OnClick" listener to the map so it pops up out info-window when the marker-pin is clicked! 
-       //    google.maps.event.addListener(marker, 'click', function () {
-       //        infowindow.open(map, marker);
-       //    });
+       var markerToll3 = new google.maps.Marker({
+           'position': latlngToll3,
+           'map': map
+       });
+       var infowindow3 = new google.maps.InfoWindow({
+           content: "M3 Clonee-Kells (Clonee-Dunshaughlin)"
+       });
+       google.maps.event.addListener(markerToll3, 'click', function () {
+           infowindow3.open(map, markerToll3);
+       });
+       markerToll3.setIcon('http://maps.google.com/intl/en_us/mapfiles/ms/micons/green-dot.png')
+
+
+       var markerToll4 = new google.maps.Marker({
+           'position': latlngToll4,
+           'map': map
+       });
+       var infowindow4 = new google.maps.InfoWindow({
+           content: "M3 Clonee-Kells (Navan-Kells)"
+       });
+       google.maps.event.addListener(markerToll4, 'click', function () {
+           infowindow4.open(map, markerToll4);
+       });
+       markerToll4.setIcon('http://maps.google.com/intl/en_us/mapfiles/ms/micons/green-dot.png')
+
+
+       var markerToll5 = new google.maps.Marker({
+           'position': latlngToll5,
+           'map': map
+       });
+       var infowindow5 = new google.maps.InfoWindow({
+           content: "M4 (Kilcock-Enfield-Kinnegad)"
+       });
+       google.maps.event.addListener(markerToll5, 'click', function () {
+           infowindow5.open(map, markerToll5);
+       });
+       markerToll5.setIcon('http://maps.google.com/intl/en_us/mapfiles/ms/micons/green-dot.png')
+
+
+       var markerToll6 = new google.maps.Marker({
+           'position': latlngToll6,
+           'map': map
+       });
+       var infowindow6 = new google.maps.InfoWindow({
+           content: "N6 (Galway to Ballinasloe)"
+       });
+       google.maps.event.addListener(markerToll6, 'click', function () {
+           infowindow6.open(map, markerToll6);
+       });
+       markerToll6.setIcon('http://maps.google.com/intl/en_us/mapfiles/ms/micons/green-dot.png')
+
+       var markerToll7 = new google.maps.Marker({
+           'position': latlngToll7,
+           'map': map
+       });
+       var infowindow7 = new google.maps.InfoWindow({
+           content: "M7/M8 (Portlaoise - Castletown/ Portlaoise - Cullahill)"
+       });
+       google.maps.event.addListener(markerToll7, 'click', function () {
+           infowindow7.open(map, markerToll7);
+       });
+       markerToll7.setIcon('http://maps.google.com/intl/en_us/mapfiles/ms/micons/green-dot.png')
+
+       var markerToll8 = new google.maps.Marker({
+           'position': latlngToll8,
+           'map': map
+       });
+       var infowindow8 = new google.maps.InfoWindow({
+           content: "N8 (Rathcormac - Fermoy Bypass)"
+       });
+       google.maps.event.addListener(markerToll8, 'click', function () {
+           infowindow8.open(map, markerToll8);
+       });
+       markerToll8.setIcon('http://maps.google.com/intl/en_us/mapfiles/ms/micons/green-dot.png')
+
+       var markerToll9 = new google.maps.Marker({
+           'position': latlngToll9,
+           'map': map
+       });
+       var infowindow9 = new google.maps.InfoWindow({
+           content: "N25 (Waterford City Bypass)"
+       });
+       google.maps.event.addListener(markerToll9, 'click', function () {
+           infowindow9.open(map, markerToll9);
+       });
+       markerToll9.setIcon('http://maps.google.com/intl/en_us/mapfiles/ms/micons/green-dot.png')
+
+       var markerToll10 = new google.maps.Marker({
+           'position': latlngToll10,
+           'map': map
+       });
+       var infowindow10 = new google.maps.InfoWindow({
+           content: "East-Link Bridge"
+       });
+       google.maps.event.addListener(markerToll10, 'click', function () {
+           infowindow10.open(map, markerToll10);
+       });
+       markerToll10.setIcon('http://maps.google.com/intl/en_us/mapfiles/ms/micons/green-dot.png')
+
+
+       var markerToll11 = new google.maps.Marker({
+           'position': latlngToll11,
+           'map': map
+       });
+       var infowindow11 = new google.maps.InfoWindow({
+           content: "Dublin Tunnel"
+       });
+       google.maps.event.addListener(markerToll11, 'click', function () {
+           infowindow11.open(map, markerToll11);
+       });
+       markerToll11.setIcon('http://maps.google.com/intl/en_us/mapfiles/ms/micons/green-dot.png')
+
+
+       var markerToll12 = new google.maps.Marker({
+           'position': latlngToll12,
+           'map': map
+       });
+       var infowindow12 = new google.maps.InfoWindow({
+           content: "Limerick Tunnel"
+       });
+       google.maps.event.addListener(markerToll12, 'click', function () {
+           infowindow12.open(map, markerToll12);
+       });
+       markerToll12.setIcon('http://maps.google.com/intl/en_us/mapfiles/ms/micons/green-dot.png')
+
+
+
 
            if (navigator.geolocation) {
                navigator.geolocation.getCurrentPosition(function (position) {
@@ -103,6 +240,8 @@
                        'position': pos,
                        'map': map
                    });
+
+                   marker.setIcon('http://maps.google.com/intl/en_us/mapfiles/ms/micons/red-dot.png');
 
                    var infowindow = new google.maps.InfoWindow({
                        content: "Current Location Traffic Data"
@@ -124,7 +263,7 @@
                handleLocationError(false, infoWindow, map.getCenter());
            }
    }
-    //)
+    
 
        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
            infoWindow.setPosition(pos);
@@ -132,8 +271,5 @@
                                  'Error: The Geolocation service failed.' :
                                  'Error: Your browser doesn\'t support geolocation.');
        }
-   //}
 </script>
-@*<script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVEzL0RBokDP7WSslsaInYcUPv_VfS_3k&callback=initMap">
-    </script>*@
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVEzL0RBokDP7WSslsaInYcUPv_VfS_3k&callback=initMap"></script>
